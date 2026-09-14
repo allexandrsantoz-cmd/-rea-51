@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css"/>
-  <title>AeroFilmes</title>
+  <link rel="stylesheet" href="style.css" />
+    <title>Filmes</title>
 </head>
 
 <body> 
@@ -13,7 +13,7 @@
     <div class="cabecalho-principal">
       
       <!-- Logo Principal -->
-      <a href="#" id="top" class="logo-link">
+      <a href="index.html" id="top" class="logo-link">
         <img src="aerologo.png" alt="Logo AeroFilms" height="80">
       </a>
 
@@ -25,7 +25,7 @@
 
       <!-- Menu Flutuante de Três Pontinhos -->
       <div class="topo-menu">
-        <details class="menu-opcoes">
+        <details class="menu-opcoes" title="Menu de opções">
           <summary>⋮</summary>
           <nav class="conteudo-menu">
             <ul>
@@ -46,7 +46,7 @@
                   </p>
                 </details>
               </li>
-              <li><a href="melist.html" class="menu-item">Minha Lista</a></li>
+              <li><a href="#configuracoes">Configurações</a></li>
               <li>
                 <details class="sub-menu-categorias">
                   <summary>Categorias</summary>
@@ -61,7 +61,8 @@
                   </div>
                 </details>
               </li>
-              <li><a href="#" onclick="sortearFilme()">Filme Sortido</a></li>
+              <li><a href="#recomendacao-aleatoria">Filme Sortido</a></li>
+              <li><a href="#player">Nível</a></li>
               <li><a href="#foruns">Fóruns de Discussões</a></li>
               <li><a href="#sugestao">Não Encontrei! :(</a></li>
               <li><a href="#bot">Onde Assistir</a></li>       
@@ -85,27 +86,17 @@
     </nav>
   </header>
 
-  <!-- CONTEÚDO PRINCIPAL DA PÁGINA -->
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="conteudo-principal">
-    
     <section class="secao-catalogo">
-      <h2 class="titulo-secao">LANÇAMENTOS</h2>
-      <!-- Grid onde os cards de Lançamentos serão injetados via JS -->
-      <div id="catalogo-lancamentos" class="catalog-grid"></div>
-    </section>
-<hr class="divisor-y2k">
-    <section class="secao-catalogo">
-      <h2 class="titulo-secao">POPULARES</h2>
-      <!-- Grid onde os cards de Populares serão injetados via JS -->
-      <div id="catalogo-populares" class="catalog-grid"></div>
-    </section>
-<hr class="divisor-y2k">
-    <section class="secao-catalogo" id="recomenda">
-      <h2 class="titulo-secao">RECOMENDAÇÕES</h2>
-      <!-- Grid onde os cards de Recomendados serão injetados via JS -->
-      <div id="catalogo-recomendacoes" class="catalog-grid"></div>
-    </section>
+      <h2 class="titulo-secao">CATÁLOGO</h2>
+      
+      <!-- O script.js preenche a grid inicialmente -->
+      <div id="catalogo-categoria" class="catalog-grid"></div>
 
+      <!-- Ponto de referência para a rolagem infinita disparar o carregamento -->
+      <div id="sentinela-rolagem" style="height: 20px; margin-top: 20px;"></div>
+    </section>
   </main>
 
   <!-- RODAPÉ E INFORMAÇÕES ADICIONAIS -->
@@ -113,17 +104,18 @@
     <hr class="divisor-y2k">
     <div class="links-rodape">
       <a href="#bot">Ver Filmes Gratuitos</a><br>
-      <a href="#" onclick="sortearFilme()">Me Recomende Algo</a><br>
+      <a href="#recomendacao-aleatoria">Me Recomende Algo</a><br>
+      <span class="barra-xp">Barra XP com nível...</span>
       
       <details class="sobre"> 
         <summary>Sobre Nós</summary>
         <h3>AeroFilmes</h3>
-        <p>Comi o cu de quem ta lendo!...</p>
+                <p>Comi o cu de quem ta lendo!...</p>
       </details>
     </div>
   </footer>
 
-  <!-- Script único para manipular os dados da API -->
+  <!-- Importação do script JS principal -->
   <script src="script.js"></script>
 </body>
 </html>
