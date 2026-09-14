@@ -4,118 +4,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css" />
-    <title>Filmes</title>
+  <title>Filmes - AeroFilmes</title>
 </head>
 
 <body> 
-  <!-- CABEÇALHO FIXO COM LOGO, MENU E BUSCA -->
-  <header class="topo-fixo">
-    <div class="cabecalho-principal">
-      
-      <!-- Logo Principal -->
-      <a href="index.html" id="top" class="logo-link">
-        <img src="aerologo.png" alt="Logo AeroFilms" height="80">
-      </a>
+  <main class="conteudo-principal">
 
-      <!-- Barra de Pesquisa Y2K Glossy -->
-      <form class="form-pesquisa">
-        <input type="search" id="campo-pesquisa" placeholder="Procurar..." required>
-        <button type="submit" id="botao-enviar">Pesquisar</button>
-      </form>
+    <!-- CABEÇALHO SUPERIOR FIXO (MESMA ESTRUTURA DO INDEX) -->
+    <header class="topo-aero">
+      <div class="topo-linha-1">
+        
+        <!-- LOGO + MENU DE TRÊS PONTINHOS DO LADO -->
+        <div class="logo-e-menu">
+          <a href="index.html" id="top" class="logo-link">
+            <img src="aerologo.png" alt="Logo AeroFilms" class="logo-img">
+          </a>
 
-      <!-- Menu Flutuante de Três Pontinhos -->
-      <div class="topo-menu">
-        <details class="menu-opcoes" title="Menu de opções">
-          <summary>⋮</summary>
-          <nav class="conteudo-menu">
-            <ul>
-              <li>
-                <details class="sub-menu-perfil">
-                  <summary>Meu Perfil</summary>
-                  <form action="/fazer-login" method="POST">
-                    <label for="menu-email">E-mail:</label>
-                    <input type="email" id="menu-email" name="email" placeholder="seu@email.com" required>
-                    
-                    <label for="menu-senha">Senha:</label>
-                    <input type="password" id="menu-senha" name="senha" placeholder="Sua senha" required>
-                    
-                    <button type="submit">Entrar</button>
-                  </form>
-                  <p class="texto-cadastro">
-                    Não tem conta? <a href="/cadastro.html" class="viw">Criar perfil</a>
-                  </p>
-                </details>
-              </li>
-              <li><a href="#configuracoes">Configurações</a></li>
-              <li>
-                <details class="sub-menu-categorias">
-                  <summary>Categorias</summary>
-                  <div class="lista-categorias">
-                    <a href="filmes.html">Filmes</a>
-                    <a href="series.html">Séries</a>
-                    <a href="animes.html">Animes</a>
-                    <a href="doc.html">Documentários</a>
-                    <a href="doramas.html">Doramas</a>
-                    <a href="novel.html">Novelas</a>
-                    <a href="curta.html">Curtas</a>
-                  </div>
-                </details>
-              </li>
-              <li><a href="#recomendacao-aleatoria">Filme Sortido</a></li>
-              <li><a href="#player">Nível</a></li>
-              <li><a href="#foruns">Fóruns de Discussões</a></li>
-              <li><a href="#sugestao">Não Encontrei! :(</a></li>
-              <li><a href="#bot">Onde Assistir</a></li>       
-            </ul>
-          </nav> 
-        </details>
+          <!-- Menu Flutuante de Três Pontinhos (Subpasta) -->
+          <details class="menu-tres-pontos">
+            <summary class="btn-tres-pontos">⋮</summary>
+            <nav class="conteudo-menu-suspenso">
+              <ul>
+                <li>
+                  <details class="sub-menu-item">
+                    <summary>👤 Meu Perfil</summary>
+                    <div class="perfil-form-box">
+                      <form action="/fazer-login" method="POST">
+                        <label for="menu-email">E-mail:</label>
+                        <input type="email" id="menu-email" name="email" placeholder="seu@email.com" required>
+                        
+                        <label for="menu-senha">Senha:</label>
+                        <input type="password" id="menu-senha" name="senha" placeholder="Sua senha" required>
+                        
+                        <button type="submit" class="btn-aero-sm">Entrar</button>
+                      </form>
+                      <p class="texto-cadastro">
+                        Não tem conta? <a href="/cadastro.html" class="viw">Criar perfil</a>
+                      </p>
+                    </div>
+                  </details>
+                </li>
+                <li><a href="melist.html">⭐ Minha Lista</a></li>
+                <li>
+                  <details class="sub-menu-item">
+                    <summary>📑 Categorias</summary>
+                    <div class="lista-categorias-sidebar">
+                      <a href="filmes.html">Filmes</a>
+                      <a href="series.html">Séries</a>
+                      <a href="animes.html">Animes</a>
+                      <a href="doc.html">Documentários</a>
+                      <a href="doramas.html">Doramas</a>
+                      <a href="novel.html">Novelas</a>
+                      <a href="curta.html">Curtas</a>
+                    </div>
+                  </details>
+                </li>
+                <li><a href="#" onclick="sortearFilme()">🎲 Filme Sortido</a></li>
+                <li><a href="#foruns">💬 Fóruns de Discussões</a></li>
+                <li><a href="#sugestao">⚠️ Não Encontrei!</a></li>
+                <li><a href="#bot">🌐 Onde Assistir</a></li>       
+              </ul>
+            </nav> 
+          </details>
+        </div>
+
+        <!-- Barra de Pesquisa Glossy -->
+        <form class="form-pesquisa">
+          <input type="search" id="campo-pesquisa" placeholder="Procurar..." required>
+          <button type="submit" id="botao-enviar" class="btn-busca-icon">🔍</button>
+        </form>
       </div>
 
-    </div>
+      <!-- Pílulas de Atalho Estilizadas -->
+      <nav class="atalhos-categorias-pills">
+        <a href="index.html#recomenda" class="pill-aero">Recomendações</a>
+        <a href="filmes.html" class="pill-aero">Filmes</a>
+        <a href="series.html" class="pill-aero">Séries</a>
+        <a href="curta.html" class="pill-aero">Curtas</a>
+        <a href="doc.html" class="pill-aero">Documentários</a>
+        <a href="novel.html" class="pill-aero">Novelas</a>
+        <a href="animes.html" class="pill-aero">Animes</a>
+        <a href="doramas.html" class="pill-aero">Doramas</a>
+      </nav>
+    </header>
 
-    <!-- Barra Curta de Categorias/Atalhos -->
-    <nav class="atalhos-categorias">
-      <a href="#recomenda">Recomendações</a> |
-      <a href="filmes.html">Filmes</a> |
-      <a href="series.html">Séries</a> |
-      <a href="curta.html">Curtas</a> |
-      <a href="doc.html">Documentários</a> |
-      <a href="novel.html">Novelas</a> |
-      <a href="animes.html">Animes</a> |
-      <a href="doramas.html">Doramas</a> 
-    </nav>
-  </header>
-
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main class="conteudo-principal">
+    <!-- CATÁLOGO PRINCIPAL DA PÁGINA -->
     <section class="secao-catalogo">
-      <h2 class="titulo-secao">CATÁLOGO</h2>
+      <div class="secao-header">
+        <h2 class="titulo-secao">CATÁLOGO DE FILMES</h2>
+      </div>
       
-      <!-- O script.js preenche a grid inicialmente -->
+      <!-- Grid onde os cards de Séries serão carregados via JS -->
       <div id="catalogo-categoria" class="catalog-grid"></div>
 
-      <!-- Ponto de referência para a rolagem infinita disparar o carregamento -->
+      <!-- Ponto de referência para a rolagem infinita -->
       <div id="sentinela-rolagem" style="height: 20px; margin-top: 20px;"></div>
     </section>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape-principal">
+      <div class="links-rodape">
+        <a href="#bot">Ver Filmes Gratuitos</a> | 
+        <a href="#" onclick="sortearFilme()">Me Recomende Algo</a>
+        
+        <details class="sobre"> 
+          <summary>Sobre Nós</summary>
+          <h3>AeroFilmes</h3>
+          <p>Comi o cu de quem ta lendo!...</p>
+        </details>
+      </div>
+    </footer>
+
   </main>
 
-  <!-- RODAPÉ E INFORMAÇÕES ADICIONAIS -->
-  <footer class="rodape-principal">
-    <hr class="divisor-y2k">
-    <div class="links-rodape">
-      <a href="#bot">Ver Filmes Gratuitos</a><br>
-      <a href="#recomendacao-aleatoria">Me Recomende Algo</a><br>
-      <span class="barra-xp">Barra XP com nível...</span>
-      
-      <details class="sobre"> 
-        <summary>Sobre Nós</summary>
-        <h3>AeroFilmes</h3>
-                <p>Comi o cu de quem ta lendo!...</p>
-      </details>
-    </div>
-  </footer>
-
-  <!-- Importação do script JS principal -->
+  <!-- Script JS Principal -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -3,21 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AeroFilmes - Minha Lista</title>
+  <title>Minha Lista - AeroFilmes</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-      <a href="index.html" id="top" class="logo-link">
-        <img src="aerologo.png" alt="Logo AeroFilms" height="80">
-      </a>
-  </header>
+  <main class="conteudo-principal">
 
-  <main class="catalog-container">
-    <h1 class="category-title">Minha Lista</h1>
-    <section class="catalog-grid" id="catalogo-melist">
-      <!-- Os filmes salvos serão renderizados aqui -->
+    <!-- CABEÇALHO SUPERIOR FIXO (PADRÃO AERO) -->
+    <header class="topo-aero">
+      <div class="topo-linha-1">
+        
+        <!-- LOGO + MENU DE TRÊS PONTINHOS DO LADO -->
+        <div class="logo-e-menu">
+          <a href="index.html" id="top" class="logo-link">
+            <img src="aerologo.png" alt="Logo AeroFilms" class="logo-img">
+          </a>
+
+          <!-- Menu Flutuante de Três Pontinhos -->
+          <details class="menu-tres-pontos">
+            <summary class="btn-tres-pontos">⋮</summary>
+            <nav class="conteudo-menu-suspenso">
+              <ul>
+                <li>
+                  <details class="sub-menu-item">
+                    <summary>👤 Meu Perfil</summary>
+                    <div class="perfil-form-box">
+                      <form action="/fazer-login" method="POST">
+                        <label for="menu-email">E-mail:</label>
+                        <input type="email" id="menu-email" name="email" placeholder="seu@email.com" required>
+                        
+                        <label for="menu-senha">Senha:</label>
+                        <input type="password" id="menu-senha" name="senha" placeholder="Sua senha" required>
+                        
+                        <button type="submit" class="btn-aero-sm">Entrar</button>
+                      </form>
+                      <p class="texto-cadastro">
+                        Não tem conta? <a href="/cadastro.html" class="viw">Criar perfil</a>
+                      </p>
+                    </div>
+                  </details>
+                </li>
+                <li><a href="melist.html">⭐ Minha Lista</a></li>
+                <li>
+                  <details class="sub-menu-item">
+                    <summary>📑 Categorias</summary>
+                    <div class="lista-categorias-sidebar">
+                      <a href="filmes.html">Filmes</a>
+                      <a href="series.html">Séries</a>
+                      <a href="animes.html">Animes</a>
+                      <a href="doc.html">Documentários</a>
+                      <a href="doramas.html">Doramas</a>
+                      <a href="novel.html">Novelas</a>
+                      <a href="curta.html">Curtas</a>
+                    </div>
+                  </details>
+                </li>
+                <li><a href="#" onclick="sortearFilme()">🎲 Filme Sortido</a></li>
+                <li><a href="#foruns">💬 Fóruns de Discussões</a></li>
+                <li><a href="#sugestao">⚠️ Não Encontrei!</a></li>
+                <li><a href="#bot">🌐 Onde Assistir</a></li>       
+              </ul>
+            </nav> 
+          </details>
+        </div>
+
+        <!-- Barra de Pesquisa Glossy -->
+        <form class="form-pesquisa">
+          <input type="search" id="campo-pesquisa" placeholder="Procurar..." required>
+          <button type="submit" id="botao-enviar" class="btn-busca-icon">🔍</button>
+        </form>
+      </div>
+
+      <!-- Pílulas de Categoria no Topo -->
+      <nav class="atalhos-categorias-pills">
+        <a href="index.html#recomenda" class="pill-aero">Recomendações</a>
+        <a href="filmes.html" class="pill-aero">Filmes</a>
+        <a href="series.html" class="pill-aero">Séries</a>
+        <a href="curta.html" class="pill-aero">Curtas</a>
+        <a href="doc.html" class="pill-aero">Documentários</a>
+        <a href="novel.html" class="pill-aero">Novelas</a>
+        <a href="animes.html" class="pill-aero">Animes</a>
+        <a href="doramas.html" class="pill-aero">Doramas</a>
+      </nav>
+    </header>
+
+    <!-- SEÇÃO DA MINHA LISTA -->
+    <section class="secao-catalogo">
+      <div class="secao-header">
+        <h2 class="titulo-secao">MINHA LISTA</h2>
+      </div>
+
+      <!-- Grid onde os filmes salvos serão renderizados via JS -->
+      <div id="catalogo-melist" class="catalog-grid"></div>
     </section>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape-principal">
+      <div class="links-rodape">
+        <a href="#bot">Ver Filmes Gratuitos</a> | 
+        <a href="#" onclick="sortearFilme()">Me Recomende Algo</a>
+        
+        <details class="sobre"> 
+          <summary>Sobre Nós</summary>
+          <h3>AeroFilmes</h3>
+          <p>Seu portal de cinema com o melhor estilo dos anos 2000!</p>
+        </details>
+      </div>
+    </footer>
+
   </main>
 
   <script src="script.js"></script>

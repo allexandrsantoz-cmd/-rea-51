@@ -1,24 +1,24 @@
 /* ============================================================
-   AEROFILMES - Y2K GLOSSY FUTURE THEME
+   AEROFILMES - FRUTIGER AERO & SKEUOMORPHIC THEME
    ============================================================ */
 
-/* 1. VARIÁVEIS DO TEMA */
+/* 1. VARIÁVEIS DO TEMA FRUTIGER AERO */
 :root {
-  --bg-deep-space: linear-gradient(135deg, #0a011a 0%, #1e003d 100%);
+  --bg-aero: radial-gradient(circle at 50% 20%, #1b3882 0%, #0c1236 60%, #050716 100%);
   --text-main: #ffffff;
-  --text-muted: #b0a0cc;
+  --text-muted: #bfe6ff;
 
-  --neon-pink: #ff007f;
-  --neon-blue: #00ffff;
-  --neon-purple: #9d00ff;
-  --neon-aqua: #00ffcc;
+  --aero-cyan: #00d4ff;
+  --aero-blue: #0077b6;
+  --aero-light-blue: #90e0ef;
 
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-reflect: inset 0 0 15px rgba(255, 255, 255, 0.3);
+  /* Efeitos de Vidro e Reflexo Glossy */
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-reflect: inset 0 1px 2px rgba(255, 255, 255, 0.8), inset 0 -2px 5px rgba(0, 0, 0, 0.3);
 
-  --font-y2k: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --transition-fast: all 0.3s ease;
+  --font-aero: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --transition-fast: all 0.25s ease-in-out;
 }
 
 /* 2. CONFIGURAÇÕES GERAIS */
@@ -27,84 +27,337 @@ html {
 }
 
 body {
-  background: var(--bg-deep-space);
+  background: var(--bg-aero);
+  background-attachment: fixed;
   color: var(--text-main);
-  font-family: var(--font-y2k);
+  font-family: var(--font-aero);
   margin: 0;
-  text-align: center;
-  padding-top: 140px; 
-  overflow-x: hidden;
+  padding: 160px 20px 20px 20px; /* Compensação superior para o cabeçalho fixo não cobrir os cards */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 3. CONTEÚDO PRINCIPAL */
+.conteudo-principal {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 /* ============================================================
-   3. GRID DO CATÁLOGO - 3 PÔSTERES POR LINHA
+   4. CABEÇALHO SUPERIOR FIXO (TOPO AERO)
+   ============================================================ */
+.topo-aero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(10, 20, 50, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 15px 25px;
+  border-bottom: 1.5px solid var(--glass-border);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+}
+
+.topo-linha-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo-e-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.logo-img {
+  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.8));
+  height: 60px;
+}
+
+/* 5. MENU FLUTUANTE DE TRÊS PONTINHOS (DROPDOWN) */
+.menu-tres-pontos {
+  position: relative;
+}
+
+/* Esconde marcadores padrão do <details> */
+.btn-tres-pontos::-webkit-details-marker,
+.btn-tres-pontos::marker {
+  display: none !important;
+}
+
+.btn-tres-pontos {
+  list-style: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  padding: 2px 10px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(0, 180, 216, 0.6) 50%, rgba(0, 119, 182, 0.8) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  line-height: 1;
+  transition: var(--transition-fast);
+}
+
+.btn-tres-pontos:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.8);
+}
+
+.conteudo-menu-suspenso {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  min-width: 230px;
+  background: rgba(8, 15, 38, 0.95);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 18px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(0, 212, 255, 0.3);
+  padding: 10px 0;
+  z-index: 1010;
+}
+
+.conteudo-menu-suspenso ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.conteudo-menu-suspenso li a,
+.sub-menu-item summary {
+  display: block;
+  padding: 10px 18px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sub-menu-item summary {
+  list-style: none;
+}
+.sub-menu-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.conteudo-menu-suspenso li a:hover,
+.sub-menu-item summary:hover {
+  background: rgba(0, 212, 255, 0.25);
+  color: var(--aero-cyan);
+}
+
+/* Formulário de Perfil & Sub-categorias dentro do Dropdown */
+.perfil-form-box, .lista-categorias-sidebar {
+  background: rgba(0, 15, 40, 0.8);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.perfil-form-box input {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.btn-aero-sm {
+  background: linear-gradient(180deg, #00d4ff 0%, #0077b6 100%);
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.lista-categorias-sidebar a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 5px 8px;
+  font-size: 0.85rem;
+}
+
+.lista-categorias-sidebar a:hover {
+  color: #fff;
+  text-shadow: 0 0 5px var(--aero-cyan);
+}
+
+/* 6. BARRA DE PESQUISA & PÍLULAS DE ATALHO */
+.form-pesquisa {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 6px 4px 15px;
+  border-radius: 30px;
+  border: 1.5px solid var(--glass-border);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+#campo-pesquisa {
+  background: transparent;
+  border: none;
+  color: #fff;
+  outline: none;
+  width: 200px;
+  font-family: var(--font-aero);
+}
+
+.btn-busca-icon {
+  background: linear-gradient(180deg, #00d4ff 0%, #0077b6 100%);
+  border: 1px solid #fff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.atalhos-categorias-pills {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pill-aero {
+  display: inline-block;
+  text-decoration: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(0, 180, 216, 0.6) 50%, rgba(0, 119, 182, 0.8) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 25px;
+  color: #ffffff;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-fast);
+}
+
+.pill-aero:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(0, 212, 255, 0.8) 50%, rgba(0, 119, 182, 1) 100%);
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 1), 0 6px 15px rgba(0, 212, 255, 0.6);
+}
+
+/* ============================================================
+   7. SEÇÕES DE CATÁLOGO E CARDS (CARROSSEL)
    ============================================================ */
 .secao-catalogo {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 40px auto;
+  background: rgba(10, 20, 50, 0.25);
+  border-radius: 25px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.secao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .titulo-secao {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   letter-spacing: 2px;
   color: #fff;
-  text-shadow: 0 0 10px var(--neon-pink);
-  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--aero-cyan), 0 2px 4px rgba(0, 0, 0, 0.8);
+  margin: 0;
   text-transform: uppercase;
 }
 
-/* Força a exibição em 3 colunas tanto pela classe quanto pelos IDs dos contêineres */
+.controles-carrossel {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-seta {
+  background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(0, 119, 182, 0.6) 100%);
+  border: 1px solid #fff;
+  color: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+.btn-seta:hover {
+  background: var(--aero-cyan);
+}
+
 .catalog-grid,
 #catalogo-lancamentos,
 #catalogo-populares,
 #catalogo-recomendacoes {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 30px !important;
-  padding: 20px 40px !important;
-  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: row !important;
+  overflow-x: auto !important;
+  gap: 15px !important;
+  padding: 10px 5px !important;
+  scroll-behavior: smooth;
 }
 
-/* Responsividade para celular */
-@media (max-width: 768px) {
-  .catalog-grid,
-  #catalogo-lancamentos,
-  #catalogo-populares,
-  #catalogo-recomendacoes {
-    grid-template-columns: repeat(1, 1fr) !important;
-    padding: 10px 20px !important;
-  }
-}
-
-/* ============================================================
-   4. CARDS DE FILME (Y2K GLOSSY BUBBLE)
-   ============================================================ */
 .movie-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 2px solid var(--glass-border);
-  border-radius: 35px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), var(--glass-reflect);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex: 0 0 145px !important;
+  min-width: 145px !important;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(0, 20, 50, 0.5));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), var(--glass-reflect);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   box-sizing: border-box;
 }
 
 .movie-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 15px 35px var(--neon-pink), 0 0 15px var(--neon-blue);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(0, 212, 255, 0.4), inset 0 1px 3px #fff;
 }
 
 .poster-container {
   position: relative;
-  width: 90%;
-  margin: 15px auto 0;
-  border-radius: 25px;
+  width: 100%;
+  border-radius: 12px;
   overflow: hidden;
   aspect-ratio: 2 / 3;
 }
@@ -113,376 +366,59 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 25px;
+  border-radius: 12px;
 }
 
-.badge {
+.badge, .rating-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple));
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #00b4d8 0%, #0077b6 100%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   color: #fff;
-  padding: 4px 10px;
-  border-radius: 20px;
+  padding: 2px 10px;
+  border-radius: 12px;
   font-size: 0.75rem;
   font-weight: bold;
-  text-transform: uppercase;
-  border: 1px solid #fff;
-}
-
-.movie-info {
-  padding: 15px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex-grow: 1;
-  justify-content: space-between;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0,0,0,0.5);
+  white-space: nowrap;
 }
 
 .movie-title {
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   color: #fff;
-  text-shadow: 0 0 8px var(--neon-blue);
-  margin: 0;
+  margin: 8px 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
-.movie-actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: auto;
+/* Customização da Barra de Rolagem Horizontal */
+.catalog-grid::-webkit-scrollbar {
+  height: 6px;
+}
+.catalog-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.catalog-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #00d4ff, #0077b6);
+  border-radius: 10px;
 }
 
-.btn-action {
-  background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(255, 0, 127, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-action.secondary {
-  background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
-}
-
-.btn-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px var(--neon-blue);
-}
-
-/* ============================================================
-   5. CABEÇALHO E TOPO FIXO
-   ============================================================ */
-.topo-fixo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  margin: 0;
-  padding: 15px 30px;
-  z-index: 1000;
-  background: rgba(10, 1, 26, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 2px solid var(--glass-border);
-  box-sizing: border-box;
-}
-
-#top a {
-  color: var(--neon-aqua);
-  text-decoration: none;
-  font-weight: bold;
-  transition: var(--transition-fast);
-}
-
-#top a:hover, nav a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 10px var(--neon-blue);
-}
-
-.cabecalho-principal {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Mantém a logo e a busca separadas */
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.cabecalho-principal h1 {
-  margin: 0;
-  font-size: 2.2rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background: linear-gradient(to right, #fff, var(--neon-blue), var(--neon-pink));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-}
-
-/* ============================================================
-   6. BARRA DE PESQUISA E BOTÕES
-   ============================================================ */
-.form-pesquisa {
-  display: flex;
-  align-items: center;
-}
-
-#campo-pesquisa {
-  padding: 10px 20px;
-  width: 250px;
-  border-radius: 50px; 
-  background: var(--glass-bg);
-  backdrop-filter: blur(5px);
-  border: 2px solid var(--glass-border);
-  color: #ffffff;
-  outline: none;
-  box-sizing: border-box;
-  box-shadow: var(--glass-reflect);
-  transition: var(--transition-fast);
-}
-
-#campo-pesquisa::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-#campo-pesquisa:focus {
-  border-color: var(--neon-blue);
-  box-shadow: 0 0 15px var(--neon-blue), var(--glass-reflect);
-}
-
-form button {
-  color: #ffffff;
-  padding: 10px 22px;
-  margin-left: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 50px;
-  border: 2px solid #ffffff;
-  background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
-  box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-form button:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px var(--neon-pink), 0 0 10px var(--neon-blue);
-}
-
-/* ============================================================
-   7. MENU FLUTUANTE DE TRÊS PONTINHOS
-   ============================================================ */
-.topo-menu {
-  position: fixed;
-  left: 20px;
-  top: 25px;
-  z-index: 1010;
-}
-
-.menu-opcoes summary {
-  list-style: none;
-  font-size: 28px;
-  cursor: pointer;
-  color: var(--neon-aqua);
-  transition: var(--transition-fast);
-}
-
-.menu-opcoes summary:hover {
-  text-shadow: 0 0 15px var(--neon-aqua);
-}
-
-.menu-opcoes summary::-webkit-details-marker {
-  display: none;
-}
-
-.conteudo-menu ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.conteudo-menu {
-  position: absolute;
-  left: 0;
-  top: 40px;
-  min-width: 220px;
-  background: rgba(20, 0, 50, 0.95);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 25px; 
-  border: 2px solid var(--neon-blue);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 
-              0 0 15px rgba(0, 255, 255, 0.3),
-              var(--glass-reflect);
-  padding: 15px 0;
-  z-index: 100;
-  text-align: left;
-}
-
-.conteudo-menu li a, 
-.sub-menu-perfil summary,
-.sub-menu-categorias summary {
-  display: block;
-  padding: 12px 25px;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.sub-menu-categorias summary {
-  list-style: none;
-}
-.sub-menu-categorias summary::-webkit-details-marker {
-  display: none;
-}
-
-.conteudo-menu li a:hover,
-.sub-menu-perfil summary:hover,
-.sub-menu-categorias summary:hover {
-  background-color: rgba(255, 0, 127, 0.2);
-  color: var(--neon-blue);
-  padding-left: 30px;
-}
-
-/* ============================================================
-   8. SUB-MENUS INTERNOS
-   ============================================================ */
-.sub-menu-perfil form,
-.lista-categorias {
+/* 8. RODAPÉ */
+.rodape-principal {
+  margin-top: 20px;
   padding: 15px;
-  margin: 8px 15px;
-  background-color: rgba(0, 0, 0, 0.5); 
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.sub-menu-perfil input {
-  width: 100%;
-  padding: 8px 12px;
-  margin-top: 6px;
-  border-radius: 10px;
-  border: 1px solid var(--glass-border);
-  background-color: rgba(0, 0, 0, 0.3);
-  color: var(--neon-aqua);
-  box-sizing: border-box;
-  outline: none;
-  transition: var(--transition-fast);
-}
-
-.sub-menu-perfil input:focus {
-  border-color: var(--neon-aqua);
-  box-shadow: 0 0 8px var(--neon-aqua);
-}
-
-.sub-menu-perfil button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  background: linear-gradient(45deg, var(--neon-blue), var(--neon-aqua));
-  color: #000000;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
-  transition: var(--transition-fast);
-}
-
-.sub-menu-perfil button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px var(--neon-aqua);
-}
-
-.lista-categorias a {
-  display: block;
-  padding: 8px 15px;
+  text-align: center;
+  font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+.rodape-principal a {
+  color: var(--aero-cyan);
   text-decoration: none;
-  font-size: 14px;
-  text-align: left;
-  transition: var(--transition-fast);
 }
 
-.lista-categorias a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 8px var(--neon-blue);
-  padding-left: 20px;
-}
-/* ============================================================
-   CATÁLOGOS EM LINHA HORIZONTAL COM 3 CARDS VISÍVEIS POR VEZ
-   ============================================================ */
-
-/* Configura o contêiner do catálogo para rolar na horizontal */
-.catalog-grid,
-#catalogo-lancamentos,
-#catalogo-populares,
-#catalogo-recomendacoes {
-  display: flex !important;
-  flex-direction: row !important;
-  overflow-x: auto !important;
-  overflow-y: hidden;
-  gap: 20px !important;
-  padding: 20px 10px !important;
-  scroll-behavior: smooth;
-  /* Suaviza o deslize ao rolar */
-  scroll-snap-type: x mandatory; 
-}
-
-/* Define a largura de cada card para ocupar exatamente 1/3 da tela */
-.catalog-grid .movie-card,
-#catalogo-lancamentos .movie-card,
-#catalogo-populares .movie-card,
-#catalogo-recomendacoes .movie-card {
-  /* Desconta os gaps para travar exatamente 3 cards na tela */
-  flex: 0 0 calc((100% - 40px) / 3) !important;
-  min-width: calc((100% - 40px) / 3) !important;
-  box-sizing: border-box;
-  scroll-snap-align: start;
-}
-
-/* Personalização da barra de rolagem horizontal (Estilo Y2K) */
-.catalog-grid::-webkit-scrollbar,
-#catalogo-lancamentos::-webkit-scrollbar,
-#catalogo-populares::-webkit-scrollbar,
-#catalogo-recomendacoes::-webkit-scrollbar {
-  height: 8px;
-}
-
-.catalog-grid::-webkit-scrollbar-track,
-#catalogo-lancamentos::-webkit-scrollbar-track,
-#catalogo-populares::-webkit-scrollbar-track,
-#catalogo-recomendacoes::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-}
-
-.catalog-grid::-webkit-scrollbar-thumb,
-#catalogo-lancamentos::-webkit-scrollbar-thumb,
-#catalogo-populares::-webkit-scrollbar-thumb,
-#catalogo-recomendacoes::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, var(--neon-purple), var(--neon-pink));
-  border-radius: 10px;
-  box-shadow: 0 0 10px var(--neon-pink);
-}
-
-/* Ajuste para celulares (exibe 1 card completo por vez) */
-@media (max-width: 768px) {
-  .catalog-grid .movie-card,
-  #catalogo-lancamentos .movie-card,
-  #catalogo-populares .movie-card,
-  #catalogo-recomendacoes .movie-card {
-    flex: 0 0 85% !important;
-    min-width: 85% !important;
-  }
-}
